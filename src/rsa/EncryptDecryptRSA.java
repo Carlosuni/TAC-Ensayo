@@ -8,37 +8,36 @@ package rsa;
  *
  */
 
-import java.util.*;
-import java.math.*;
+import java.math.BigInteger;
 
-class EncryptDecryptRSA{
-	/**
-	 * @param args
-	 */
-	
+class EncryptDecryptRSA {
 	public static void main(String args[]) {
-		if (args.length == 3) {
-			//Scanner sc = new Scanner(System.in);
-			BigInteger p = new BigInteger("0");
-			BigInteger q = new BigInteger("0");
-			BigInteger n = new BigInteger("0");
-			BigInteger z = new BigInteger("0");
-			BigInteger d = new BigInteger("0");
-			BigInteger e;
-			//BigInteger i;
-			BigInteger unitBigInt = new BigInteger("1");
-			BigInteger zeroBigInt = new BigInteger("0");
+		// Comprobamos que hay 3 parametros y que son primos con una probabilidad del 99.9999%
+		if (args.length == 3 && new BigInteger(args[1]).isProbablePrime(19) && new BigInteger(args[2]).isProbablePrime(19)) {
+			// Variables RSA
+			BigInteger p;															// Primer numero primo
+			BigInteger q;															// Segundo numero primo
+			BigInteger n;															// Producto de los primos
+			BigInteger z;															// TODO
+			BigInteger d = new BigInteger("0");						// Exponente de clave privada (decrypt)
+			BigInteger e;															// Exponente de clave publica  (encrypt)
+			BigInteger msg;														// TODO
+			BigInteger c;															// TODO
+			BigInteger msgback; 												// TODO
 
-			//int msg = sc.nextInt();
-			BigInteger msg = new BigInteger(args[0]);
+			// Referencias de BigInteger
+			BigInteger unitBigInt = new BigInteger("1");				
+			BigInteger zeroBigInt = new BigInteger("0");				
+			
+			// Obtenemos los parametros
+			msg = new BigInteger(args[0]);
 			System.out.println("El mensaje (numero) introducido es = " + msg);
-			BigInteger c;
-			BigInteger msgback; 
 			p =  new BigInteger(args[1]);
 			System.out.println("El primer primo p introducido es = " + p);
 			q =  new BigInteger(args[2]);
 			System.out.println("El segundo primo q introducido es = " + q);
 			
+			// Multiplicamos los primos
 			n = p.multiply(q);
 			z = p.subtract(unitBigInt).multiply(q.subtract(unitBigInt));
 			System.out.println("El valor de  z es = " + z);		
@@ -49,7 +48,7 @@ class EncryptDecryptRSA{
 				}
 			}
 			
-			System.out.println("El valor de es es = " + e);	
+			System.out.println("El valor de e es = " + e);	
 			
 			for (BigInteger i = new BigInteger("0");
 					(i.compareTo(new BigInteger("9")) == 0) || (i.compareTo(new BigInteger("9")) == -1);
@@ -70,10 +69,10 @@ class EncryptDecryptRSA{
 			// Converting float value of c to BigInteger
 			//BigInteger C = BigDecimal.valueOf(c).toBigInteger();
 			msgback = (c.modPow(d, n));
-			System.out.println("EL mensaje desencriptado es = " + msgback);
+			System.out.println("El mensaje desencriptado es = " + msgback);
 			//System.out.println(msgback);
 		} else {
-			System.out.println("Error: Introduzca los 3 parámetros-> mensaje, p y q (primos)\n");
+			System.out.println("Error: Introduzca los 3 parametros-> mensaje, p y q (primos)\n");
 		}
 		
 	}
