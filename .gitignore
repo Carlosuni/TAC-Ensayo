@@ -21,3 +21,13 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/bin/
+src/tests/input/primos_test.csv
+src/tests/enc_dec_tester.R
+src/tests/.Rhistory
+src/tests/.RData
+src/run.bat
+src/bckp_run.bat
+.Rhistory
+src/compile.bat
+src/rsa/.RData
