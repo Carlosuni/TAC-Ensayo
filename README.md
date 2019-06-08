@@ -1,2 +1,2 @@
 # TAC-Ensayo
-Implementación RSA
+Implementación de algoritmo RSA con BigInteger para cálculo de complejidad computacional
